@@ -2,7 +2,7 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">ID</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Options</th>
@@ -10,9 +10,9 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Thornton</td>
+        <th scope="row">{{id}}</th>
+        <td *ngFor="let author of authors">{{fName}}</td>
+        <td>{{sName}}</td>
         <td>
           <a href="#" class="link">
             <fa-icon [icon]="['fas', 'trash']"></fa-icon>&nbsp;
