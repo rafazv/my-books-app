@@ -11,17 +11,14 @@ export class AuthorsService {
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
-  values: any;
+
   constructor(private http: HttpClient) { }
 
   private formatErrors(error: any) {
     return Observable.throw(error);
   }
 
-  getAuthor(): Observable<any>{    
-    return this.http.get(this.url+'/authors').catch(this.formatErrors);
-  }
-
+  //do getAuthor()
   
   getAuthorById(id: number): Observable<any>{
     return this.http.get(this.url+'/authors/'+id).catch(this.formatErrors);
