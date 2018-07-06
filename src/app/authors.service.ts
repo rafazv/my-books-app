@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { Observable } from "rxjs";
@@ -11,17 +11,18 @@ export class AuthorsService {
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
-
+  values: any;
   constructor(private http: HttpClient) { }
 
   private formatErrors(error: any) {
     return Observable.throw(error);
   }
 
-  getAuthor(): Observable<any>{
+  getAuthor(): Observable<any>{    
     return this.http.get(this.url+'/authors').catch(this.formatErrors);
   }
 
+  
   getAuthorById(id: number): Observable<any>{
     return this.http.get(this.url+'/authors/'+id).catch(this.formatErrors);
   }

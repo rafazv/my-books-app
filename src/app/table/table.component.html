@@ -8,11 +8,11 @@
         <th scope="col">Options</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{id}}</th>
-        <td *ngFor="let author of authors">{{fName}}</td>
-        <td>{{sName}}</td>
+    <tbody class="authors">
+      <tr *ngFor="let author of authors">
+        <th scope="row">{{author.id}}</th>
+        <td>{{author.firstName}}</td>
+        <td>{{author.lastName}}</td>
         <td>
           <a href="#" class="link">
             <fa-icon [icon]="['fas', 'trash']"></fa-icon>&nbsp;
