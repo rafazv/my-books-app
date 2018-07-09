@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { Observable } from "rxjs";
@@ -14,16 +14,17 @@ export class AuthorsService {
 
   constructor(private http: HttpClient) { }
 
+  //erro nisso 
   private formatErrors(error: any) {
     return Observable.throw(error);
   }
 
   getAuthor(): Observable<any>{
-    return this.http.get(this.url+'/authors').catch(this.formatErrors);
+    return this.http.get(this.url+'/authors');
   }
-
+  
   getAuthorById(id: number): Observable<any>{
-    return this.http.get(this.url+'/authors/'+id).catch(this.formatErrors);
+    return this.http.get(this.url+'/authors/'+id);
   }
 
   updateAuthor(firstName: string, lastName: string): Observable<any> {
@@ -32,7 +33,7 @@ export class AuthorsService {
       'lastName': lastName
     };
 
-    return this.http.put(this.url+'/authors', author, this.httpOptions).catch(this.formatErrors);
+    return this.http.put(this.url+'/authors', author, this.httpOptions);
   }
 
   addAuthor(firstName: string, lastName: string): Observable<any> {
@@ -41,15 +42,15 @@ export class AuthorsService {
       'lastName': lastName
     };
 
-    return this.http.post(this.url+'/authors', author, this.httpOptions).catch(this.formatErrors);
+    return this.http.post(this.url+'/authors', author, this.httpOptions);
   }
 
   deleteAuthor (id: number): Observable<any> {
-    return this.http.delete(this.url+'/authors/'+id, this.httpOptions).catch(this.formatErrors);
+    return this.http.delete(this.url+'/authors/'+id, this.httpOptions);
   }
 
   searchAuthor(value: string): Observable<any> {
-    return this.http.get(this.url+'/authors?filter='+value).catch(this.formatErrors);
+    return this.http.get(this.url+'/authors?filter='+value);
   }
 
 }
