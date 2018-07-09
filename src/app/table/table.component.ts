@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthorsService } from "../authors.service";
 import { map } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
@@ -10,7 +10,7 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit{
+export class TableComponent {
 
   @Input() firstName: string;
   @Input() lastName: string;
@@ -20,30 +20,14 @@ export class TableComponent implements OnInit{
   mensagem: string = '';
   authors: any;
 
-  constructor(service: AuthorsService, private httpClient: HttpClient ) {
+  constructor(service: AuthorsService) {
       
     this.service = service;
-    // this.service.getAuthor();    
-    // this.service.getAuthor().
-    // map(res => res.json())
-    // .subscribe(authors => { 
-    //   this.authors = authors; 
-    //   console.log(this.authors);
-    // }, erro => console.log(erro));
+    this.service.getAuthor()
+    .subscribe(value => { 
+      this.authors = value;
+      //console.log(this.authors);
+    });
       
   }
-
-  ngOnInit(){
-    this.getAuthor();
-  }
-
-  getAuthor(){
-    this.httpClient.get('https://bibliapp.herokuapp.com/api/authors')
-    .subscribe(
-      value => {         
-        this.authors = value;    
-      }
-    );
-  }
-  
 }
