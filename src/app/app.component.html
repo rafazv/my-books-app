@@ -1,8 +1,8 @@
 <app-table></app-table>
 <div class="container">
   <label>Search Author:</label>
-  <input name="titule" class="form-control" autocomplete="off">
-  <button class="btn">
+  <input [(ngModel)]="contentSearch" class="form-control" placeholder="Enter with author ID">
+  <button class="btn" (click)="search()">
     <fa-icon [icon]="['fas', 'search']"></fa-icon>&nbsp;
     Search
   </button>

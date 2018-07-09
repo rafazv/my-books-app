@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-
+import { FormsModule } from '@angular/forms';
 
 import { AuthorsService } from './authors.service';
 import { HttpClientModule } from "@angular/common/http";
@@ -17,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [AuthorsService],
   bootstrap: [AppComponent]
