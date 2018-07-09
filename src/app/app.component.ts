@@ -28,8 +28,12 @@ export class AppComponent {
     .subscribe(value => { 
       this.authors = value;
       console.log(this.authors);
+      this.contentSearch = '';
+    }, erro => {
+      console.log(erro);
+      console.log("Don't exist author with id: "+this.contentSearch);
+      this.contentSearch = '';
     });
-    this.contentSearch = '';
   }
   
 

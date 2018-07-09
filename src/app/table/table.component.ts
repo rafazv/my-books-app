@@ -25,6 +25,8 @@ export class TableComponent {
     .subscribe(value => { 
       this.authors = value;
       //console.log(this.authors);
+    }, erro => {
+      console.log(erro);
     });
       
   }
