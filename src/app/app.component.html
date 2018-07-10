@@ -1,11 +1,11 @@
-<app-table></app-table>
+<app-table [onSearch]="eventSearch" ></app-table>
 <div class="container">
   <label>Search Author:</label>
-  <input [(ngModel)]="contentSearch" class="form-control" placeholder="Enter with author ID">
-  <button class="btn" (search)="search($event)">
+  <input [(ngModel)]="contentSearch" (keyup)="onSearch($event)" class="form-control" placeholder="Enter with author's name">
+  <!--<button class="btn" (click)="onSearch($event)">
     <fa-icon [icon]="['fas', 'search']"></fa-icon>&nbsp;
     Search
-  </button>
+  </button>-->
   <button class="btn">
     <fa-icon [icon]="['fas', 'plus']"></fa-icon>&nbsp;
     Add Author

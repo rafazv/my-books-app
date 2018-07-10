@@ -50,7 +50,7 @@ export class AuthorsService {
   }
 
   searchAuthor(value: string): Observable<any> {
-    return this.http.get(this.url+'/authors?filter='+value);
+    return this.http.get(this.url+'/authors?'+value);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
@@ -19,21 +19,17 @@ export class AppComponent {
   service: AuthorsService;
   authors: any;
 
+  @Output() eventSearch: EventEmitter<string> = new EventEmitter();
+
   constructor(service: AuthorsService) {
     this.service = service;
   }
 
-  search(){
-    this.service.getAuthorById(this.contentSearch)
-    .subscribe(value => { 
-      this.authors = value;
-      console.log(this.authors);
-      this.contentSearch = '';
-    }, erro => {
-      console.log(erro);
-      console.log("Don't exist author with id: "+this.contentSearch);
-      this.contentSearch = '';
-    });
+  onSearch(event: any){
+    if(event.key === "Enter"){
+      this.eventSearch.emit(this.contentSearch);
+      //console.log("Digitou enter");
+    }
   }
   
 

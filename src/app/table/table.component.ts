@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { AuthorsService } from "../authors.service";
 import { map } from 'rxjs/operators';
 
@@ -9,21 +9,14 @@ import { map } from 'rxjs/operators';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent {
+export class TableComponent implements OnInit{
 
-  @Input() firstName: string;
-  @Input() lastName: string;
-  @Input() id: string;
-
-  @Output() search = new EventEmitter();
+  @Input() onSearch: EventEmitter<string>;
 
   service: AuthorsService;
   authors: any;
 
-  constructor(service: AuthorsService) {
-      
-    this.search.emit();
-    this.service = service;
+  ngOnInit(){
     this.service.getAuthor()
     .subscribe(value => { 
       this.authors = value;
@@ -31,6 +24,29 @@ export class TableComponent {
     }, erro => {
       console.log(erro);
     });
-      
+    this.onSearch.subscribe(
+      value => {
+        this.searchAuthor(value);
+      }
+    );
   }
+
+  constructor(service: AuthorsService) { 
+    this.service = service;
+  }
+
+  searchAuthor(searchWord: string){
+    this.service.searchAuthor('{firstName='+ searchWord +'}')
+      .subscribe(value => { 
+        this.authors = value;
+        console.log(this.authors);
+      }, erro => {
+        this.authors = '';
+        console.log(erro);
+        console.log("Don't exist author with name: "+searchWord);
+      });
+
+    //console.log("Digitou enter2");
+  }
+
 }
