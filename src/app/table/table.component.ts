@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthorsService } from "../authors.service";
 import { map } from 'rxjs/operators';
 
@@ -15,11 +15,14 @@ export class TableComponent {
   @Input() lastName: string;
   @Input() id: string;
 
+  @Output() search = new EventEmitter();
+
   service: AuthorsService;
   authors: any;
 
   constructor(service: AuthorsService) {
       
+    this.search.emit();
     this.service = service;
     this.service.getAuthor()
     .subscribe(value => { 
