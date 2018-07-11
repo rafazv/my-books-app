@@ -17,13 +17,7 @@ export class TableComponent implements OnInit{
   authors: any;
 
   ngOnInit(){
-    this.service.getAuthor()
-    .subscribe(value => { 
-      this.authors = value;
-      //console.log(this.authors);
-    }, erro => {
-      console.log(erro);
-    });
+    this.getAll();
     this.onSearch.subscribe(
       value => {
         this.searchAuthor(value);
@@ -35,8 +29,22 @@ export class TableComponent implements OnInit{
     this.service = service;
   }
 
+  getAll(){
+    this.service.getAuthor()
+    .subscribe(value => { 
+      this.authors = value;
+      //console.log(this.authors);
+    }, erro => {
+      console.log(erro);
+    });
+  }
+
   searchAuthor(searchWord: string){
-    this.service.searchAuthor('firstName":"'+ searchWord +'"}}')
+    if(searchWord === ''){
+      this.getAll();
+    }
+    else{
+      this.service.searchAuthor('firstName":"'+ searchWord +'"}}')
       .subscribe(value => { 
         this.authors = value;
         console.log(this.authors);
@@ -45,8 +53,23 @@ export class TableComponent implements OnInit{
         console.log(erro);
         console.log("Don't exist author with name: "+searchWord);
       });
+    }
+  }
 
-    //console.log("Digitou enter2");
+  delete(id: string){
+    this.service.deleteAuthor(id)
+      .subscribe(
+        () => {
+          let index = this.authors.indexOf(id, 0);
+          if(index > -1){
+            this.authors.splice(index, 1);
+          }
+          this.getAll();
+        }, 
+        erro => {
+          console.log(erro);
+        }
+      );
   }
 
 }

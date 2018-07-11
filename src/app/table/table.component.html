@@ -14,11 +14,11 @@
         <td>{{author.firstName}}</td>
         <td>{{author.lastName}}</td>
         <td>
-          <a href="#" class="link">
+          <a href="#" class="link" (click)="delete(author.id)">
             <fa-icon [icon]="['fas', 'trash']"></fa-icon>&nbsp;
           </a>
           <a href="#" class="link">
-            <fa-icon [icon]="['fas', 'sync-alt']"></fa-icon>&nbsp;
+            <fa-icon [icon]="['fas', 'edit']"></fa-icon>&nbsp;
           </a>
         </td>
       </tr>
