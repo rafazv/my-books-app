@@ -49,4 +49,19 @@ export class TableComponent implements OnInit{
     //console.log("Digitou enter2");
   }
 
+  delete(id: string){
+    this.service.deleteAuthor(id)
+      .subscribe(
+        () => {
+          let newAuthor = this.authors.slice(0);
+          let index = newAuthor.indexOf(id);
+          newAuthor.splice(index, 1);
+          this.authors = newAuthor;
+        }, 
+        erro => {
+          console.log(erro);
+        }
+      );
+  }
+
 }
