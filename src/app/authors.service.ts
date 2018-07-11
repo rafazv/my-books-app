@@ -23,7 +23,7 @@ export class AuthorsService {
     return this.http.get(this.url+'/authors');
   }
   
-  getAuthorById(id: number): Observable<any>{
+  getAuthorById(id: string): Observable<any>{
     return this.http.get(this.url+'/authors/'+id);
   }
 
@@ -45,12 +45,12 @@ export class AuthorsService {
     return this.http.post(this.url+'/authors', author, this.httpOptions);
   }
 
-  deleteAuthor (id: number): Observable<any> {
+  deleteAuthor (id: string): Observable<any> {
     return this.http.delete(this.url+'/authors/'+id, this.httpOptions);
   }
 
   searchAuthor(value: string): Observable<any> {
-    return this.http.get(this.url+'/authors?filter='+value);
+    return this.http.get(this.url+'/authors?filter={"where":{"'+value);
   }
 
 }
