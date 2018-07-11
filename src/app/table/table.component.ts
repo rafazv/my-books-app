@@ -36,7 +36,7 @@ export class TableComponent implements OnInit{
   }
 
   searchAuthor(searchWord: string){
-    this.service.searchAuthor('{firstName='+ searchWord +'}')
+    this.service.searchAuthor('firstName":"'+ searchWord +'"}}')
       .subscribe(value => { 
         this.authors = value;
         console.log(this.authors);
