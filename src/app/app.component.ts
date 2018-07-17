@@ -3,7 +3,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { AuthorsService } from "./authors.service";
-import { TableComponent } from './table/table.component';
 
 library.add(fas);
 library.add(far);
@@ -19,7 +18,6 @@ export class AppComponent {
   contentSearch : string;
   service: AuthorsService;
   authors: any;
-  table: TableComponent;
 
   @Output() eventSearch: EventEmitter<string> = new EventEmitter();
 
