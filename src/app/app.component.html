@@ -1,13 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Authors' List</a>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Add Author</a>
+      </li>
+    </ul>
+    <input [(ngModel)]="contentSearch" (keyup)="onSearch($event)" class="form-control" placeholder="Enter with author's name for search">
+  </div>
+</nav>
 <app-table [onSearch]="eventSearch" ></app-table>
-<div class="container">
-  <label>Search Author:</label>
-  <input [(ngModel)]="contentSearch" (keyup)="onSearch($event)" class="form-control" placeholder="Enter with author's name">
-  <!--<button class="btn" (click)="onSearch($event)">
-    <fa-icon [icon]="['fas', 'search']"></fa-icon>&nbsp;
-    Search
-  </button>-->
-  <button class="btn">
-    <fa-icon [icon]="['fas', 'plus']"></fa-icon>&nbsp;
-    Add Author
-  </button>
-</div>

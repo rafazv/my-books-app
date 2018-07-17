@@ -50,6 +50,7 @@ export class TableComponent implements OnInit{
         console.log(this.authors);
       }, erro => {
         this.authors = '';
+        this.getAll();
         console.log(erro);
         console.log("Don't exist author with name: "+searchWord);
       });
