@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { TableComponent } from './table/table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddComponent } from './add/add.component';
+import { routing } from "./app.routes";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddComponent } from './add/add.component';
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [AuthorsService],
   bootstrap: [AppComponent]

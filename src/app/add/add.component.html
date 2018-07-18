@@ -1,5 +1,5 @@
 <div class="container">
   <input class="form-control" [(ngModel)]="fName" placeholder="Author's first name">
   <input class="form-control" [(ngModel)]="lName" placeholder="Author's last name">
-  <button class="btn" (click)="add()" >Add</button>
+  <button class="btn" (click)="add()" [routerLink]="['/home']">Add</button>
 </div>
