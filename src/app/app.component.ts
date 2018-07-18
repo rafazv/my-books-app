@@ -13,23 +13,4 @@ library.add(far);
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-
-  contentSearch : string;
-  service: AuthorsService;
-  authors: any;
-
-  @Output() eventSearch: EventEmitter<string> = new EventEmitter();
-
-  constructor(service: AuthorsService) {
-    this.service = service;
-  }
-
-  onSearch(event: any){
-    if(event.key === "Enter"){
-      this.eventSearch.emit(this.contentSearch);
-    }
-  }
-  
-
-}
+export class AppComponent { }
