@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../authors.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -8,29 +9,31 @@ import { AuthorsService } from '../authors.service';
 })
 export class AddComponent implements OnInit {
 
-  fName: string;
-  lName: string;
+  firstName: string;
+  lastName: string;
   service: AuthorsService;
   authors: any;
+  router: Router;
 
-  constructor(service: AuthorsService) {
+  constructor(service: AuthorsService, router: Router) {
     this.service = service;
+    this.router = router;
   }
 
   ngOnInit() {
   }
 
   add(){
-    this.service.addAuthor(this.fName, this.lName)
+    this.service.addAuthor(this.firstName, this.lastName)
     .subscribe(value => { 
       this.authors = value;
-      console.log(this.authors);
+      this.router.navigate(['/']);
     }, erro => {
       this.authors = '';
       console.log(erro);
     });
-    this.fName='';
-    this.lName='';
+    this.firstName='';
+    this.lastName='';
   }
 
 }

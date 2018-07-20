@@ -57,10 +57,6 @@ export class TableComponent implements OnInit{
     this.service.deleteAuthor(id)
       .subscribe(
         () => {
-          let index = this.authors.indexOf(id, 0);
-          if(index > -1){
-            this.authors.splice(index, 1);
-          }
           this.getAll();
         }, 
         erro => {

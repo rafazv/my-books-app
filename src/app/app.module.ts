@@ -8,12 +8,14 @@ import { TableComponent } from './table/table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddComponent } from './add/add.component';
 import { routing } from "./app.routes";
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     AddComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

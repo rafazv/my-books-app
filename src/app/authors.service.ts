@@ -27,12 +27,7 @@ export class AuthorsService {
     return this.http.get(this.url+'/authors/'+id);
   }
 
-  updateAuthor(firstName: string, lastName: string): Observable<any> {
-    const author = {
-      'firstName': firstName,
-      'lastName': lastName
-    };
-
+  editAuthor(author): Observable<any> {
     return this.http.put(this.url+'/authors', author, this.httpOptions);
   }
 
