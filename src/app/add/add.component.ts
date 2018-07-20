@@ -9,8 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddComponent implements OnInit {
 
-  firstName: string;
-  lastName: string;
+  author = { };
   service: AuthorsService;
   authors: any;
   router: Router;
@@ -24,16 +23,13 @@ export class AddComponent implements OnInit {
   }
 
   add(){
-    this.service.addAuthor(this.firstName, this.lastName)
+    this.service.addAuthor(this.author)
     .subscribe(value => { 
       this.authors = value;
       this.router.navigate(['/']);
     }, erro => {
-      this.authors = '';
       console.log(erro);
     });
-    this.firstName='';
-    this.lastName='';
   }
 
 }

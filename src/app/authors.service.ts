@@ -14,11 +14,6 @@ export class AuthorsService {
 
   constructor(private http: HttpClient) { }
 
-  //erro nisso 
-  private formatErrors(error: any) {
-    return Observable.throw(error);
-  }
-
   getAuthor(): Observable<any>{
     return this.http.get(this.url+'/authors');
   }
@@ -31,12 +26,7 @@ export class AuthorsService {
     return this.http.put(this.url+'/authors', author, this.httpOptions);
   }
 
-  addAuthor(firstName: string, lastName: string): Observable<any> {
-    const author = {
-      'firstName': firstName,
-      'lastName': lastName
-    };
-
+  addAuthor(author): Observable<any> {
     return this.http.post(this.url+'/authors', author, this.httpOptions);
   }
 

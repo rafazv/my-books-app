@@ -27,7 +27,6 @@ export class EditComponent implements OnInit {
         .subscribe(value => { 
           this.author = value;
         }, erro => {
-          this.author = '';
           console.log(erro);
         });
       }
@@ -39,7 +38,7 @@ export class EditComponent implements OnInit {
 
   edit(){
     this.service.editAuthor(this.author)
-    .subscribe(value => { 
+    .subscribe(() => { 
       this.router.navigate(['/']);
     }, erro => {
       console.log(erro);

@@ -3,7 +3,6 @@ import { AuthorsService } from "../authors.service";
 import { map } from 'rxjs/operators';
 
 @Component({
-  moduleId: module.id,
   providers: [AuthorsService],
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -27,7 +26,6 @@ export class TableComponent implements OnInit{
     this.service.getAuthor()
     .subscribe(value => { 
       this.authors = value;
-      //console.log(this.authors);
     }, erro => {
       console.log(erro);
     });
@@ -42,9 +40,7 @@ export class TableComponent implements OnInit{
         this.service.searchAuthor('firstName":"'+ this.contentSearch +'"}}')
         .subscribe(value => { 
           this.authors = value;
-          console.log(this.authors);
         }, erro => {
-          this.authors = '';
           this.getAll();
           console.log(erro);
           console.log("Don't exist author with name: "+this.contentSearch);
