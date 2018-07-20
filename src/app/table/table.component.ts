@@ -11,18 +11,12 @@ import { map } from 'rxjs/operators';
 })
 export class TableComponent implements OnInit{
 
-  @Input() onSearch: EventEmitter<string>;
-
+  contentSearch: string;
   service: AuthorsService;
   authors: any;
 
   ngOnInit(){
     this.getAll();
-    this.onSearch.subscribe(
-      value => {
-        this.searchAuthor(value);
-      }
-    );
   }
 
   constructor(service: AuthorsService) { 
@@ -39,21 +33,23 @@ export class TableComponent implements OnInit{
     });
   }
 
-  searchAuthor(searchWord: string){
-    if(searchWord === ''){
-      this.getAll();
-    }
-    else{
-      this.service.searchAuthor('firstName":"'+ searchWord +'"}}')
-      .subscribe(value => { 
-        this.authors = value;
-        console.log(this.authors);
-      }, erro => {
-        this.authors = '';
+  searchAuthor(event: any){
+    if(event.key === "Enter"){
+      if(this.contentSearch === ''){
         this.getAll();
-        console.log(erro);
-        console.log("Don't exist author with name: "+searchWord);
-      });
+      }
+      else{
+        this.service.searchAuthor('firstName":"'+ this.contentSearch +'"}}')
+        .subscribe(value => { 
+          this.authors = value;
+          console.log(this.authors);
+        }, erro => {
+          this.authors = '';
+          this.getAll();
+          console.log(erro);
+          console.log("Don't exist author with name: "+this.contentSearch);
+        });
+      }
     }
   }
 
@@ -61,10 +57,6 @@ export class TableComponent implements OnInit{
     this.service.deleteAuthor(id)
       .subscribe(
         () => {
-          let index = this.authors.indexOf(id, 0);
-          if(index > -1){
-            this.authors.splice(index, 1);
-          }
           this.getAll();
         }, 
         erro => {

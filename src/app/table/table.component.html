@@ -1,4 +1,5 @@
 <div class="container">
+  <input [(ngModel)]="contentSearch" (keyup)="searchAuthor($event)" class="form-control" placeholder="Enter with author's first name for search">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -17,7 +18,7 @@
           <a href="#" class="link" (click)="delete(author.id)">
             <fa-icon [icon]="['fas', 'trash']"></fa-icon>&nbsp;
           </a>
-          <a href="#" class="link">
+          <a href="#" class="link" [routerLink]="['/edit', author.id]">
             <fa-icon [icon]="['fas', 'edit']"></fa-icon>&nbsp;
           </a>
         </td>
